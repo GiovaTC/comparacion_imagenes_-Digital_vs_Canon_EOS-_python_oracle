@@ -34,9 +34,7 @@ CREATE TABLE imagenes (
     fecha_registro TIMESTAMP DEFAULT SYSTIMESTAMP
 );
 
-2. requirements.txt
-txt
-Copiar código
+2. requirements.txt 
 oracledb==1.9.0
 python-dotenv==1.0.0
 numpy==1.26.0

@@ -1,7 +1,8 @@
 # comparacion_imagenes_-Digital_vs_Canon_EOS-_python_oracle .
-# Comparación de Imágenes (Digital vs Canon EOS) con Oracle : 
 
-<img width="203" height="193" alt="image" src="https://github.com/user-attachments/assets/acd0ce8a-579d-497b-a76e-797430d0bb13" /> 
+<img width="203" height="193" alt="image" src="https://github.com/user-attachments/assets/acd0ce8a-579d-497b-a76e-797430d0bb13" />     
+
+# Comparación de Imágenes (Digital vs Canon EOS) con Oracle : 
 
 Este proyecto incluye un programa en **Python** que :
 

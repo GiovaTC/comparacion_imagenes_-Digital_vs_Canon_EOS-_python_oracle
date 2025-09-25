@@ -84,3 +84,17 @@ def fetch_image_by_id(pool, img_id):
 def load_file_bytes(path):
     with open(path, "rb") as f:
         return f.read() 
+
+def bytes_to_cv2_image(b):
+    #lee bytes y convierte a imagen BGR ( openCV ) .
+    arr = np.frombuffer(b,  dtype=np.uint8)
+    img = cv2.imdecode(arr, cv2.IMREAD_COLOR)
+    return img  
+
+def pil_to_cv2(img_pil):
+    arr = np.array(img_pil)
+    if arr.ndim == 2:
+        return arr
+    return cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
+
+    

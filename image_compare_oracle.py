@@ -21,3 +21,8 @@ POOL_MIN = int(os.getenv("ORACLE_POOL_MIN", "1"))
 POOL_MAX = int(os.getenv("ORACLE_POOL_MAX", "4"))
 
 #rutas por defecto ( puedes cambiar ) .
+DIGITAL_IMAGE_PATH = os.getenv("DIGITAL_IMAGE_PATH", "digital_image.png")
+CANON_IMAGE_PATH = os.getenv("CANON_IMAGE_PATH", "canon_eos.jpg")
+
+BACKUP_DIR = "backup"
+METADATA_CSV = "scores.csv"

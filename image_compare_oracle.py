@@ -46,4 +46,41 @@ def append_metadata_csv(row):
             writer.writerow(header)
         writer.writerow(row)
 
+def connect_oracle():
+    #intentamos crear un pool si hay credenciales . :
+    if not ORACLE_USER or not ORACLE_PASS or not ORACLE_DSN:
+        raise ValueError("faltan credenciales de oracle en variables de entorno .")
+    pool = oracledb.create_pool(user=ORACLE_USER, password=ORACLE_PASS, dsn=ORACLE_DSN,
+                                min=POOL_MIN, max=POOL_MAX, increment=1, encoding="utf-8")
+    return pool
 
+def insert_image(pool, nombre, descripcion, formato, image_bytes):
+    conn = pool.acquire()
+    try:
+        cursor = conn.cursor()
+        sql = "INSERT INTO imagenes (nombre, descripcion, formato, imagen) VALUES (:1, :2, :3, :4) RETURNING id INTO :5"
+        out_id = cursor.var(int)
+        cursor.execute(sql, [nombre, descripcion, formato, image_bytes, out_id])
+        conn.commit()
+        return int(out_id.getvalue()[0])
+    finally:
+        pool.release(conn)
+
+def fetch_image_by_id(pool, img_id):
+    conn = pool.acquire()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT nombre, descripcion, formato, imagen FROM imagenes WHERE id = :id", [img_id])
+        row = cursor.fetchone()
+        if row:
+            nombre, descripcion, formato, blob = row
+            image_bytes = blob.read() if blob is not None else None
+            return {"id": img_id, "nombre": nombre, "descripcion": descripcion, "formato": formato, "bytes": image_bytes}
+        else:
+            return None
+    finally:
+        pool.release(conn)
+
+def load_file_bytes(path):
+    with open(path, "rb") as f:
+        return f.read() 

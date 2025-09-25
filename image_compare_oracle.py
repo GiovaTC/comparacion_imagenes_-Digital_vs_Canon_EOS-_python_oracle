@@ -36,3 +36,14 @@ def save_backup(path, name):
     with open(path, "rb") as rf, open(dest, "wb") as wf:
         wf.write(rf.read())
     return dest 
+
+def append_metadata_csv(row):
+    header = ["timestamp","nombre","descripcion","formato","localpath"]
+    exists = os.path.exists(METADATA_CSV)
+    with open(METADATA_CSV, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        if not exists:
+            writer.writerow(header)
+        writer.writerow(row)
+
+

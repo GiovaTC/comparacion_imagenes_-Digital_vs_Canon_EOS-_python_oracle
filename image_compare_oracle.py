@@ -97,4 +97,26 @@ def pil_to_cv2(img_pil):
         return arr
     return cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
 
+def show_images_grid(img1_bgr, img2_bgr, title1= "imagen 1", title2= "imagen 2"):
+    #convert BGR -> RGB para matplotlib
+    img1 = cv2.cvtColor(img1_bgr, cv2.COLOR_BGR2RGB) if img1_bgr is not None else None
+    img2 = cv2.cvtColor(img2_bgr, cv2.COLOR_BGR2RGB) if img2_bgr is not None else None
+
+    plt.figure(figsize=(10, 6))
+    plt.subplot(1,2,1)
+    plt.axis('off')
+    plt.title(title1)   
+    if img1 is not None:
+        plt.imshow(img1)
+    else:
+        plt.text(0.5,0.5,"no  disponible", ha='center')
+    plt.subplot(1,2,2)
+    plt.axis('off')
+    plt.title(title2)   
+    if img2 is not None:
+        plt.imshow(img2)
+    else:
+        plt.text(0.5,0.5,"no disponible", ha='center')
     
+    plt.tight_layout()
+    plt.show()   

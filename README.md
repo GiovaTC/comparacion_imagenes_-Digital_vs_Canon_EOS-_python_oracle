@@ -4,6 +4,8 @@
 
 # Comparación de Imágenes (Digital vs Canon EOS) con Oracle : 
 
+<img width="2555" height="1078" alt="image" src="https://github.com/user-attachments/assets/281a3621-3eb7-4d3e-a293-288cc56b60cb" />
+
 Este proyecto incluye un programa en **Python** que :
 
 - Guarda dos imágenes (una "digital" y otra tomada con una cámara Canon EOS) en una tabla **Oracle** como `BLOB` .

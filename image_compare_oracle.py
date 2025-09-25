@@ -26,3 +26,13 @@ CANON_IMAGE_PATH = os.getenv("CANON_IMAGE_PATH", "canon_eos.jpg")
 
 BACKUP_DIR = "backup"
 METADATA_CSV = "scores.csv"
+
+def ensure_backup_dir():
+    os.makedirs(BACKUP_DIR, exist_ok=True)
+
+def save_backup(path, name):
+    ensure_backup_dir()
+    dest = os.path.join(BACKUP_DIR, name)
+    with open(path, "rb") as rf, open(dest, "wb") as wf:
+        wf.write(rf.read())
+    return dest 

@@ -222,4 +222,4 @@ def main():
         print(f"se guardaron respaldos en {BACKUP_DIR} y metadata en {METADATA_CSV}")
 
 if __name__ == "__main__":
-    main()
+    main()  
